@@ -4,8 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 import '../widgets/item_app_bar.dart';
+import '../widgets/item_button_nav_bar.dart';
 
 class ItemPage extends StatelessWidget {
+  List<Color> Clrs = [
+    Colors.red,
+    Colors.green,
+    Colors.blue,
+    Colors.yellow,
+    Colors.orange,
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +41,7 @@ class ItemPage extends StatelessWidget {
                 child: Column(
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(top: 50, bottom: 20),
+                      padding: EdgeInsets.only(top: 50, bottom: 15),
                       child: Row(children: [
                         Text('Product title',
                             style: TextStyle(
@@ -165,14 +174,51 @@ class ItemPage extends StatelessWidget {
                               )
                             ],)
                           ],
+                        )),
+                        Padding(
+                        padding: EdgeInsets.symmetric(vertical: 8),
+                        child: Row(
+                          children: [
+                            Text(
+                              'Color:',
+                              style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.blue,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(width: 10),
+                            Row(children: [
+                              for(int i = 0; i < 5; i++)
+                              Container(
+                                height: 30,
+                                width: 30,
+                                alignment: Alignment.center,
+                                margin: EdgeInsets.symmetric(horizontal: 5),
+                                decoration: BoxDecoration(
+                                  color: Clrs[i],
+                                  borderRadius: BorderRadius.circular(30),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.5),
+                                      spreadRadius: 2,
+                                      blurRadius: 8,
+                                    )
+                                  ]
+                                ),
+                              )
+                            ],)
+                          ],
                         ))
                   ],
                 ),
               ),
+
             ),
           )
         ],
       ),
+      bottomNavigationBar: ItemButtonNavBar(),
     );
   }
 }
